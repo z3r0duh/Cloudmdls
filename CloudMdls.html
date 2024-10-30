@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Models Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .question { margin-bottom: 20px; }
+        .correct { color: green; }
+        .incorrect { color: red; }
+    </style>
+</head>
+<body>
+
+    <h1>Cloud Models Quiz</h1>
+    <form id="quizForm">
+        <!-- Question 1 -->
+        <div class="question">
+            <label>1. If an application needs to be accessed by anyone on the internet, which type of cloud should it use?</label><br>
+            <input type="radio" name="q1" value="Public cloud"> Public cloud<br>
+            <input type="radio" name="q1" value="Private cloud"> Private cloud<br>
+            <input type="radio" name="q1" value="Hybrid cloud"> Hybrid cloud<br>
+            <input type="radio" name="q1" value="Virtualized cloud"> Virtualized cloud<br>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question">
+            <label>2. What is a key characteristic of Software as a Service (SaaS)?</label><br>
+            <input type="radio" name="q2" value="You develop the application yourself"> You develop the application yourself<br>
+            <input type="radio" name="q2" value="Someone else manages the application"> Someone else manages the application<br>
+            <input type="radio" name="q2" value="You install software locally"> You install software locally<br>
+            <input type="radio" name="q2" value="You are responsible for hardware management"> You are responsible for hardware management<br>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question">
+            <label>3. A benefit of SaaS is that you:</label><br>
+            <input type="radio" name="q3" value="Don’t need a local installation"> Don’t need a local installation<br>
+            <input type="radio" name="q3" value="Need to upgrade the software yourself"> Need to upgrade the software yourself<br>
+            <input type="radio" name="q3" value="Control data access and security"> Control data access and security<br>
+            <input type="radio" name="q3" value="Install hardware for access"> Install hardware for access<br>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question">
+            <label>4. If you want to build your own application and manage the data yourself, which model should you choose?</label><br>
+            <input type="radio" name="q4" value="SaaS"> SaaS<br>
+            <input type="radio" name="q4" value="PaaS"> PaaS<br>
+            <input type="radio" name="q4" value="IaaS"> IaaS<br>
+            <input type="radio" name="q4" value="On-Premises"> On-Premises<br>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question">
+            <label>5. What does the user control in the IaaS model?</label><br>
+            <input type="radio" name="q5" value="Physical hardware"> Physical hardware<br>
+            <input type="radio" name="q5" value="Software and data"> Software and data<br>
+            <input type="radio" name="q5" value="Cloud infrastructure"> Cloud infrastructure<br>
+            <input type="radio" name="q5" value="Network security"> Network security<br>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="question">
+            <label>6. Which model offers a middle ground, where you manage app development but not the cloud engine?</label><br>
+            <input type="radio" name="q6" value="IaaS"> IaaS<br>
+            <input type="radio" name="q6" value="PaaS"> PaaS<br>
+            <input type="radio" name="q6" value="SaaS"> SaaS<br>
+            <input type="radio" name="q6" value="On-Premises"> On-Premises<br>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="question">
+            <label>7. In PaaS, what does the cloud provider supply to the user?</label><br>
+            <input type="radio" name="q7" value="Complete applications"> Complete applications<br>
+            <input type="radio" name="q7" value="Building tools"> Building tools<br>
+            <input type="radio" name="q7" value="Hardware management"> Hardware management<br>
+            <input type="radio" name="q7" value="Network upgrades"> Network upgrades<br>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="question">
+            <label>8. Who is responsible for running the application engine in PaaS?</label><br>
+            <input type="radio" name="q8" value="The customer"> The customer<br>
+            <input type="radio" name="q8" value="The platform provider"> The platform provider<br>
+            <input type="radio" name="q8" value="A third-party manager"> A third-party manager<br>
+            <input type="radio" name="q8" value="An automated system"> An automated system<br>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="question">
+            <label>9. In the cloud responsibility matrix, which cloud model leaves the most responsibility to the customer?</label><br>
+            <input type="radio" name="q9" value="SaaS"> SaaS<br>
+            <input type="radio" name="q9" value="PaaS"> PaaS<br>
+            <input type="radio" name="q9" value="IaaS"> IaaS<br>
+            <input type="radio" name="q9" value="On-Premises"> On-Premises<br>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="question">
+            <label>10. In SaaS, which party is primarily responsible for application maintenance?</label><br>
+            <input type="radio" name="q10" value="The user"> The user<br>
+            <input type="radio" name="q10" value="The provider"> The provider<br>
+            <input type="radio" name="q10" value="An IT consultant"> An IT consultant<br>
+            <input type="radio" name="q10" value="The network administrator"> The network administrator<br>
+        </div>
+
+        <button type="button" onclick="checkAnswers()">Submit Quiz</button>
+    </form>
+
+    <div id="results"></div>
+
+    <script>
+        function checkAnswers() {
+            const answers = {
+                q1: "Public cloud",
+                q2: "Someone else manages the application",
+                q3: "Don’t need a local installation",
+                q4: "IaaS",
+                q5: "Software and data",
+                q6: "PaaS",
+                q7: "Building tools",
+                q8: "The platform provider",
+                q9: "On-Premises",
+                q10: "The provider"
+            };
+
+            let results = "";
+            let score = 0;
+
+            for (const [question, answer] of Object.entries(answers)) {
+                const userAnswer = document.querySelector(`[name="${question}"]:checked`) 
+                    ? document.querySelector(`[name="${question}"]:checked`).value
+                    : "";
+
+                if (userAnswer === answer) {
+                    results += `<p class="correct">Question ${question.slice(1)}: Correct</p>`;
+                    score++;
+                } else {
+                    results += `<p class="incorrect">Question ${question.slice(1)}: Incorrect (Correct answer: ${answer})</p>`;
+                }
+            }
+
+            results += `<h2>Your Score: ${score} / 10</h2>`;
+            document.getElementById("results").innerHTML = results;
+        }
+    </script>
+
+</body>
+</html>
